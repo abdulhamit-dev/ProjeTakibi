@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
 
   MenuBarItems() {
     this.items = [
-      { label: 'Kullanıcı Listesi', routerLink: 'kullanici/list' },
+      { label: 'Kullanıcı Listesi', routerLink: 'kullanici/list',icon:"pi pi-fw pi-user" },
       { label: 'Test',routerLink:'/test' },
       { label: 'İnfertilite' },
       { label: 'KOH(siklus)' },

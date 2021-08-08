@@ -31,7 +31,13 @@ export class ListComponent implements OnInit {
   }
 
   AddKullanici() {
-    this.kullaniciService.AddKullanici(this.kullanici);
+    var kullanici=this.kullaniciList.find(x=>x.kullaniciAdi==this.kullanici.kullaniciAdi)
+
+    if(kullanici===undefined){
+      this.kullaniciService.AddKullanici(this.kullanici);
+    }else{
+      alert("Aynı kullanıcı adı daha önce kaydedilmiş.")
+    }
   }
 
   // DeleteKullanici(id: string) {
@@ -58,6 +64,8 @@ export class ListComponent implements OnInit {
         target: event.target as EventTarget,
         message:kul.kullaniciAdi +' adlı kayıt silinsin mi?',
         icon: 'pi pi-exclamation-triangle',
+        acceptLabel:"Evet",
+        rejectLabel:"Hayır",
         accept: () => {
            this.kullaniciService.DeleteKullanici(kul.id)
         },

@@ -9,16 +9,16 @@ import { Kullanici } from '../models/kullanici';
 export class KullaniciService {
   constructor(private fireStore: AngularFirestore) {}
 
-
   KullaniciListesi() {
     return this.fireStore.collection('kullanici').snapshotChanges();
   }
 
-  KullaniciGetir(kullaniciAdi:string,parola:string){
-    // return this.fireStore.collection('kullanici',ref=>ref.where('kullaniciAdi','==',kullaniciAdi).where('parola','==',parola)).get().toPromise(,);
-  return  this.fireStore
-    .collection("kullanici",ref=>ref.where("kullaniciAdi","==",kullaniciAdi)).snapshotChanges()
-    
+  KullaniciGetir(kullaniciAdi: string, parola: string) {
+    return this.fireStore
+      .collection('kullanici', (ref) =>
+        ref.where('kullaniciAdi', '==', kullaniciAdi)
+      )
+      .snapshotChanges();
   }
 
   DeleteKullanici(id: string) {

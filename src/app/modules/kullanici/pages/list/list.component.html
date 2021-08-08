@@ -11,37 +11,38 @@
         <button pButton class="p-button-success" icon="pi pi-check" label="Kaydet" (click)="AddKullanici()"></button>    
         </div>
     </div>
-    <p-table [value]="kullaniciList" [scrollable]="true" scrollHeight="70vh" [style]="{width:'100%'}" >
+    <!-- <p-table [value]="kullaniciList" [scrollable]="true" scrollHeight="70vh" [style]="{width:'100%'}" ></p-table> -->
+    <p-table [value]="kullaniciList" [resizableColumns]="true" [autoLayout]="true" >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 200px;" >ID</th>
-                <th style="width: 200px;" >Kullanıcı Adı</th>
-                <th style="width: 200px;" >Parola</th>
-                <th style="width: 200px;" >Ad</th>
-                <th style="width: 200px;" >Soyad</th>
-                <th style="width: 200px;" >Eposta</th>
-                <th style="width: 100px;" >Sil</th>
-                <th style="width: 100px;" >Düzenle</th>
+                <th hidden>ID</th>
+                <th>Kullanıcı Adı</th>
+                <th>Parola</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Eposta</th>
+                <th>Sil</th>
+                <th>Düzenle</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-kul>
             <tr>
-                <td style="width: 200px;">{{kul.id}}</td>
-                <td style="width: 200px;">{{kul.kullaniciAdi}}</td>
-                <td style="width: 200px;">{{kul.parola }}</td>
-                <td style="width: 200px;">{{kul.ad}}</td>
-                <td style="width: 200px;">{{kul.soyad}}</td>
-                <td style="width: 200px;">{{kul.eposta}}</td>
-                <td style="width: 100px;"><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteControl($event,kul)"   label="Sil"></button></td>
-                <td style="width: 100px;"><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
+                <td hidden>{{kul.id}}</td>
+                <td>{{kul.kullaniciAdi}}</td>
+                <td>{{kul.parola }}</td>
+                <td>{{kul.ad}}</td>
+                <td>{{kul.soyad}}</td>
+                <td>{{kul.eposta}}</td>
+                <td><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteControl($event,kul)"   label="Sil"></button></td>
+                <td><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
             </tr>
         </ng-template>
     </p-table>
 
-    <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    <p-dialog header="Kullanıcı Düzenle" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
         [draggable]="false" [resizable]="false">
         <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.kullaniciAdi}}" id="txtKullaniciAdi" placeholder="Kullanıcı Adı" class="w-full">  </div>
+            <div class="col-12 md:col-6 lg:col-3"> <input type="text" [disabled]="true" pInputText value="{{selectKullanici.kullaniciAdi}}" id="txtKullaniciAdi" placeholder="Kullanıcı Adı" class="w-full">  </div>
             <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.parola}}" id="txtParola" placeholder="Parola" class="w-full">  </div>
             <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.eposta}}" id="txtEposta" placeholder="Eposta" class="w-full">  </div>
             <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.ad}}" id="txtAd" placeholder="Ad" class="w-full">  </div>
