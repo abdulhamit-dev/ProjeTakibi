@@ -1,0 +1,46 @@
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="proje.ad"  placeholder="Proje Adı" class="w-full">  </div>
+    <div class="col-12 md:col-6 lg:col-6"> <input type="text" pInputText [(ngModel)]="proje.aciklama" placeholder="Açıklama" class="w-full">  </div>
+    <div class="col-12 md:col-6 lg:col-3"> 
+        <button pButton class="p-button-success" icon="pi pi-check" label="Kaydet" (click)="AddProje()"></button>    
+        </div>
+</div>
+
+<p-table [value]="projeList" [resizableColumns]="true" [autoLayout]="true" >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Açıklama</th>
+            <th>Oluşturma Tarihi</th>
+            <th>Oluşturan Kullanıcı</th>
+            <th>Sil</th>
+            <th>Düzenle</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-proje>
+        <tr>
+            <td>{{proje.id}}</td>
+            <td>{{proje.ad}}</td>
+            <td>{{proje.aciklama }}</td>
+            <td>{{proje.olusturmaTarihi}}</td>
+            <td>{{proje.olusturanKullaniciId}}</td>
+            <td><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteProje($event,proje)"   label="Sil"></button></td>
+            <td><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(proje)"   label="Düzenle"></button></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Proje Düzenle" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+[draggable]="false" [resizable]="false">
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectProje.ad}}" id="txtAd" placeholder="Proje Adı" class="w-full">  </div>
+    <div class="col-12 md:col-6 lg:col-9"> <input type="text" pInputText value="{{selectProje.aciklama}}" id="txtAciklama" placeholder="Açıklama" class="w-full">  </div>
+</div>
+    <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="UpdateProje()" label="Kaydet"  styleClass="p-button-success"></p-button>
+    <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat"  styleClass="p-button-danger"></p-button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmPopup></p-confirmPopup>

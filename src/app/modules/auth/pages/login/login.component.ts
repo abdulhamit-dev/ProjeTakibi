@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   rvKul: Kullanici = new Kullanici();
   ngOnInit(): void {
     localStorage.removeItem('kullanici');
+    localStorage.removeItem('kullaniciId');
   }
 
   Giris() {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
                 this.rvKul.id=data.payload.doc.id
                 
                 if(this.rvKul.id.length>0){
-                    
+                  localStorage.setItem('kullaniciId',this.rvKul.id)
                   localStorage.setItem('kullanici',JSON.stringify(data.payload.doc.data()));
                   this.router.navigateByUrl('')
                 }

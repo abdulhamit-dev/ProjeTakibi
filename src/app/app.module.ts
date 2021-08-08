@@ -16,6 +16,7 @@ import { KullaniciModule } from './modules/kullanici/kullanici.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ContentComponent } from './layout/content/content.component';
 import { FormsModule } from '@angular/forms';
+import { ProjeModule } from './modules/proje/proje.module';
 
 @NgModule({
   declarations: [AppComponent, TestComponent, NavComponent, ContentComponent],
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     PrimengModule,
     KullaniciModule,
+    ProjeModule,
     AuthModule,
     FormsModule
   ],

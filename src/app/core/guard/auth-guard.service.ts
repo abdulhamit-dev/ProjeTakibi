@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     
     this.kullanici=JSON.parse(localStorage.getItem("kullanici")!) as Kullanici;
-    console.log(this.kullanici)
+    
 
     if(this.kullanici!=null){
       return true;

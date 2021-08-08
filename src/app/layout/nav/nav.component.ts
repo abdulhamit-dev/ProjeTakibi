@@ -11,23 +11,35 @@ export class NavComponent implements OnInit {
   constructor() {}
   items!: MenuItem[];
   splintItems!: MenuItem[];
-  kullaniciAdi!:string;
-  kullanici:Kullanici=new Kullanici()
+  kullaniciAdi!: string;
+  kullanici: Kullanici = new Kullanici();
   ngOnInit(): void {
     this.AktifKullanici();
     this.MenuBarItems();
     this.SplintItems();
   }
-  
-  AktifKullanici(){
-    this.kullanici=JSON.parse(localStorage.getItem("kullanici")!) as Kullanici;
+
+  AktifKullanici() {
+    this.kullanici = JSON.parse(
+      localStorage.getItem('kullanici')!
+    ) as Kullanici;
   }
 
   MenuBarItems() {
     this.items = [
-      { label: 'Kullanıcı Listesi', routerLink: 'kullanici/list',icon:"pi pi-fw pi-user" },
-      { label: 'Test',routerLink:'/test' },
-      { label: 'İnfertilite' },
+      {
+        label: 'Kullanıcı Listesi',
+        routerLink: 'kullanici/list',
+        icon: 'pi pi-fw pi-user',
+      },
+      {
+        label: 'Proje',
+        items: [
+          { label: 'Projeler', routerLink: 'proje/list' },
+          { label: 'Düzenle', routerLink: 'proje/duzenle' },
+        ],
+      },
+      { label: 'Test', routerLink: '/test' },
       { label: 'KOH(siklus)' },
       { label: 'Gebelik' },
       { label: 'Jin. Muayene' },
@@ -59,13 +71,17 @@ export class NavComponent implements OnInit {
     this.splintItems = [
       { label: 'Ayarlar', icon: 'pi pi-cog' },
       { separator: true },
-      { label: 'Çıkış', icon: 'pi pi-login', routerLink: ['auth/login'],command:this.LogOut },
+      {
+        label: 'Çıkış',
+        icon: 'pi pi-login',
+        routerLink: ['auth/login'],
+        command: this.LogOut,
+      },
     ];
   }
 
-  LogOut(){
-   
-    localStorage.setItem("kullaniciAdi","")
-    console.log(localStorage.getItem("kullaniciAdi")+"_deneme")
+  LogOut() {
+    localStorage.setItem('kullaniciAdi', '');
+    console.log(localStorage.getItem('kullaniciAdi') + '_deneme');
   }
 }
