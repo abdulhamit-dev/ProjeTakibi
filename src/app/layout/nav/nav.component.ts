@@ -10,9 +10,12 @@ export class NavComponent implements OnInit {
   constructor() {}
   items!: MenuItem[];
   splintItems!: MenuItem[];
+  kullaniciAdi!:string;
   ngOnInit(): void {
     this.MenuBarItems();
     this.SplintItems();
+    var kullaniciAdi=localStorage.getItem("kullaniciAdi")!.toString()
+    this.kullaniciAdi=kullaniciAdi;
   }
 
   MenuBarItems() {
@@ -51,7 +54,13 @@ export class NavComponent implements OnInit {
     this.splintItems = [
       { label: 'Ayarlar', icon: 'pi pi-cog' },
       { separator: true },
-      { label: 'Çıkış', icon: 'pi pi-login', routerLink: ['/login'] },
+      { label: 'Çıkış', icon: 'pi pi-login', routerLink: ['auth/login'],command:this.LogOut },
     ];
+  }
+
+  LogOut(){
+   
+    localStorage.setItem("kullaniciAdi","")
+    console.log(localStorage.getItem("kullaniciAdi")+"_deneme")
   }
 }

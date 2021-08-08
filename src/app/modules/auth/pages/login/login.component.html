@@ -9,10 +9,10 @@
 
         <div>
             <label for="email" class="block text-900 font-medium mb-2">Email</label>
-            <input id="email" type="text" pInputText class="w-full mb-3">
+            <input  type="text" pInputText class="w-full mb-3" [(ngModel)]="kullanici.kullaniciAdi">
 
             <label for="password" class="block text-900 font-medium mb-2">Password</label>
-            <input id="password" type="password" pInputText class="w-full mb-3">
+            <input  type="password" pInputText class="w-full mb-3" [(ngModel)]="kullanici.parola">
 
             <div class="flex align-items-center justify-content-between mb-6">
                 <div class="flex align-items-center">
@@ -22,7 +22,7 @@
                 <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot your password?</a>
             </div>
 
-            <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
+            <button pButton pRipple label="Sign In" icon="pi pi-user" (click)="Giris()" class="w-full"></button>
         </div>
     </div>
 </div>
