@@ -1,24 +1,54 @@
 
-<div class="p-grid p-fluid">
-    <div class="p-col-12 p-md-4">
-        <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-            <input type="text" pInputText placeholder="Username">         
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="kullanici.kullaniciAdi"  placeholder="Kullanıcı Adı" class="w-full">  </div>
+        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.parola" placeholder="Parola" class="w-full">  </div>
+        <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="kullanici.eposta" placeholder="Eposta" class="w-full">  </div>
+        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.ad" placeholder="Ad" class="w-full">  </div>
+        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.soyad" placeholder="Soyad" class="w-full">  </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3"> 
+        <button pButton class="p-button-success" (click)="AddKullanici()">Kaydet</button>    
         </div>
     </div>
+    <p-table [value]="kullaniciList" [scrollable]="true" scrollHeight="70vh" [style]="{width:'100%'}" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 200px;" >ID</th>
+                <th style="width: 200px;" >Kullanıcı Adı</th>
+                <th style="width: 200px;" >Parola</th>
+                <th style="width: 200px;" >Ad</th>
+                <th style="width: 200px;" >Soyad</th>
+                <th style="width: 200px;" >Eposta</th>
+                <th style="width: 100px;" >Sil</th>
+                <th style="width: 100px;" >Düzenle</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-kul>
+            <tr>
+                <td style="width: 200px;">{{kul.id}}</td>
+                <td style="width: 200px;">{{kul.kullaniciAdi}}</td>
+                <td style="width: 200px;">{{kul.parola }}</td>
+                <td style="width: 200px;">{{kul.ad}}</td>
+                <td style="width: 200px;">{{kul.soyad}}</td>
+                <td style="width: 200px;">{{kul.eposta}}</td>
+                <td style="width: 100px;"><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteKullanici(kul.id)"   label="Sil"></button></td>
+                <td style="width: 100px;"><button pButton class="p-button-warning" icon="pi pi-edit" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
+            </tr>
+        </ng-template>
+    </p-table>
     
-    <div class="p-col-12 p-md-4">
-        <div class="p-inputgroup">
-            <span class="p-inputgroup-addon">$</span>
-            <input type="text" pInputText placeholder="Price">   
-            <span class="p-inputgroup-addon">.00</span>      
+    <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+        [draggable]="false" [resizable]="false">
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.kullaniciAdi}}" id="txtKullaniciAdi" placeholder="Kullanıcı Adı" class="w-full">  </div>
+            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.parola}}" id="txtParola" placeholder="Parola" class="w-full">  </div>
+            <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.eposta}}" id="txtEposta" placeholder="Eposta" class="w-full">  </div>
+            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.ad}}" id="txtAd" placeholder="Ad" class="w-full">  </div>
+            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.soyad}}" id="txtSoyad" placeholder="Soyad" class="w-full">  </div>
         </div>
-    </div>
-            
-    <div class="p-col-12 p-md-4">
-        <div class="p-inputgroup">
-            <span class="p-inputgroup-addon">www</span>
-            <input type="text" pInputText placeholder="Website">      
-        </div>
-    </div>
-</div>
+            <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="UpdateKullanici()" label="Kaydet"  styleClass="p-button-success"></p-button>
+            <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat"  styleClass="p-button-danger"></p-button>
+            </ng-template>
+    </p-dialog>

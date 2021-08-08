@@ -12,24 +12,13 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
 import {CalendarModule} from 'primeng/calendar';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    DropdownModule,
-    InputTextModule,
-    MenubarModule,
-    ButtonModule,
-    CheckboxModule,
-    TableModule,
-    CardModule,
-    SplitButtonModule,
-    ToastModule,
-    DividerModule,
-    CalendarModule
-  ],
+  imports: [CommonModule],
   exports:[
     DropdownModule,
     InputTextModule,
@@ -41,7 +30,9 @@ import {CalendarModule} from 'primeng/calendar';
     SplitButtonModule,
     ToastModule,
     DividerModule,
-    CalendarModule
+    CalendarModule,
+    DialogModule,
+    ConfirmPopupModule
   ]
 })
 export class PrimengModule { }

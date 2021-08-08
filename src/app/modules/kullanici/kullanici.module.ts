@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { KullaniciRoutingModule } from './kullanici-routing.module';
 import { ListComponent } from './pages/list/list.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PrimengModule } from '../primeng/primeng.module';
   imports: [
     CommonModule,
     KullaniciRoutingModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule
   ]
 })
 export class KullaniciModule { }
