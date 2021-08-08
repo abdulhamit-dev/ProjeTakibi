@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Kullanici } from 'src/app/core/models/kullanici';
 
 @Component({
   selector: 'app-nav',
@@ -11,11 +12,15 @@ export class NavComponent implements OnInit {
   items!: MenuItem[];
   splintItems!: MenuItem[];
   kullaniciAdi!:string;
+  kullanici:Kullanici=new Kullanici()
   ngOnInit(): void {
+    this.AktifKullanici();
     this.MenuBarItems();
     this.SplintItems();
-    var kullaniciAdi=localStorage.getItem("kullaniciAdi")!.toString()
-    this.kullaniciAdi=kullaniciAdi;
+  }
+  
+  AktifKullanici(){
+    this.kullanici=JSON.parse(localStorage.getItem("kullanici")!) as Kullanici;
   }
 
   MenuBarItems() {

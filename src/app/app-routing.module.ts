@@ -15,9 +15,9 @@ const routes: Routes = [
     children: [
       {
         path: 'kullanici',
-        children: [{ path: 'list', component: ListComponent }],
+        children: [{ path: 'list', component: ListComponent,canActivate:[AuthGuardService] }],
       },
-      {path:'test',component:TestComponent}
+      {path:'test',component:TestComponent,canActivate:[AuthGuardService]}
     ],
   },
   {

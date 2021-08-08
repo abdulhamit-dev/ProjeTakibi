@@ -13,7 +13,7 @@ export class TestService {
  }
 
  getArananiGetir(deger:string) {
-  return this.fireStore.collection('kullanici',ref=>ref.where('ad','==',deger)).snapshotChanges();
+  return this.fireStore.collection('kullanici',ref=>ref.where('kullaniciAdi','==',deger).where('parola','==',deger)).snapshotChanges();
 }
 
 addKullanici(kul: Kullanici) {
