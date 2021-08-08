@@ -10,8 +10,14 @@ export class ProjeService {
   constructor(private fireStore: AngularFirestore) { }
 
   ProjeList(){
-    return this.fireStore.collection('proje').snapshotChanges();
+    return this.fireStore.collection('proje').snapshotChanges()
   }
+
+  Test(){
+    return this.fireStore.collection<Proje>('proje').valueChanges()
+  }
+
+
   AddProje(proje:Proje){
     return this.fireStore.collection('proje').add(Object.assign({},proje));
   }

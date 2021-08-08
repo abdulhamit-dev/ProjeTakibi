@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
+import { Kullanici } from 'src/app/core/models/kullanici';
 import { Proje } from 'src/app/core/models/proje';
+import { KullaniciService } from 'src/app/core/services/kullanici.service';
 import { ProjeService } from 'src/app/core/services/proje.service';
 
 @Component({
@@ -11,14 +13,18 @@ import { ProjeService } from 'src/app/core/services/proje.service';
 export class ProjeDuzenleComponent implements OnInit {
   constructor(
     private projeService: ProjeService,
+    private kullaniciService:KullaniciService,
     private confirmationService: ConfirmationService
   ) {}
   proje: Proje = new Proje();
   projeList: Proje[] = [];
   selectProje: Proje = new Proje();
   displayModal!: boolean;
+  kullaniciList:Kullanici[]=[];
+
   ngOnInit(): void {
     this.ProjeList();
+    //  
   }
 
   ProjeList() {
@@ -27,9 +33,14 @@ export class ProjeDuzenleComponent implements OnInit {
         const data = p.payload.doc.data() as Proje;
         data.id = p.payload.doc.id;
         return data;
-      });
+      })
     });
   }
+  // Test(){
+  //   this.projeService.Test().subscribe(x=>{
+  //     console.log(x);
+  //   })
+  // }
 
   AddProje() {
     this.proje.olusturanKullaniciId = localStorage.getItem(
