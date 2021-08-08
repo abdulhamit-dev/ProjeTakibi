@@ -8,7 +8,7 @@
     </div>
     <div class="grid">
         <div class="col-12 md:col-6 lg:col-3"> 
-        <button pButton class="p-button-success" (click)="AddKullanici()">Kaydet</button>    
+        <button pButton class="p-button-success" icon="pi pi-check" label="Kaydet" (click)="AddKullanici()"></button>    
         </div>
     </div>
     <p-table [value]="kullaniciList" [scrollable]="true" scrollHeight="70vh" [style]="{width:'100%'}" >
@@ -32,12 +32,12 @@
                 <td style="width: 200px;">{{kul.ad}}</td>
                 <td style="width: 200px;">{{kul.soyad}}</td>
                 <td style="width: 200px;">{{kul.eposta}}</td>
-                <td style="width: 100px;"><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteKullanici(kul.id)"   label="Sil"></button></td>
-                <td style="width: 100px;"><button pButton class="p-button-warning" icon="pi pi-edit" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
+                <td style="width: 100px;"><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteControl($event,kul)"   label="Sil"></button></td>
+                <td style="width: 100px;"><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
             </tr>
         </ng-template>
     </p-table>
-    
+
     <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
         [draggable]="false" [resizable]="false">
         <div class="grid">
@@ -52,3 +52,7 @@
             <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat"  styleClass="p-button-danger"></p-button>
             </ng-template>
     </p-dialog>
+
+    <p-confirmPopup></p-confirmPopup>
+
+<!-- <button (click)="DeleteControl($event,kul)" pButton icon="pi pi-check" label="Sil"></button> -->

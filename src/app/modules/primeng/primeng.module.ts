@@ -14,7 +14,7 @@ import { DividerModule } from 'primeng/divider';
 import {CalendarModule} from 'primeng/calendar';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
-
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
   declarations: [],
@@ -33,6 +33,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     CalendarModule,
     DialogModule,
     ConfirmPopupModule
-  ]
+  ],
+  providers:[ConfirmationService]
 })
 export class PrimengModule { }
