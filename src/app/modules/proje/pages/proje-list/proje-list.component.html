@@ -1,2 +1,22 @@
 
-proje list
+<div class="grid">
+    <div class="col-12 md:col-3">
+        <p-listbox [options]="projeList" [(ngModel)]="selectProje" optionLabel="ad" (click)="ProjeHareketList(selectProje)"></p-listbox>
+    </div>
+    <div class="col-12 md:col-6">
+        <p-table [value]="projeHareketList" [resizableColumns]="true" [autoLayout]="true" >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ID</th>
+                    <th>Proje Id</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-hareket>
+                <tr>
+                    <td>{{hareket.id}}</td>
+                    <td>{{hareket.projeId}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

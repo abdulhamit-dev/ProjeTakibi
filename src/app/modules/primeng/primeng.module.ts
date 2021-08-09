@@ -11,15 +11,16 @@ import { CardModule } from 'primeng/card';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
-import {CalendarModule} from 'primeng/calendar';
-import {DialogModule} from 'primeng/dialog';
-import {ConfirmPopupModule} from 'primeng/confirmpopup';
-import {ConfirmationService} from 'primeng/api';
+import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports:[
+  exports: [
     DropdownModule,
     InputTextModule,
     MenubarModule,
@@ -32,8 +33,9 @@ import {ConfirmationService} from 'primeng/api';
     DividerModule,
     CalendarModule,
     DialogModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    ListboxModule,
   ],
-  providers:[ConfirmationService]
+  providers: [ConfirmationService],
 })
-export class PrimengModule { }
+export class PrimengModule {}
