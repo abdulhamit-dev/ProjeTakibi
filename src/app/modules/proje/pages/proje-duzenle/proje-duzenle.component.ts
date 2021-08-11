@@ -28,7 +28,7 @@ export class ProjeDuzenleComponent implements OnInit {
   }
 
   ProjeList() {
-    this.projeService.ProjeList().subscribe((rv) => {
+    this.projeService.List('proje').subscribe((rv) => {
       this.projeList = rv.map((p) => {
         const data = p.payload.doc.data() as Proje;
         data.id = p.payload.doc.id;
@@ -47,7 +47,7 @@ export class ProjeDuzenleComponent implements OnInit {
       'kullaniciId'
     ) as string;
     this.proje.olusturmaTarihi = new Date().toLocaleString();
-    this.projeService.AddProje(this.proje);
+    this.projeService.Add(this.proje,'proje');
   }
 
   UpdateProje() {
@@ -57,7 +57,7 @@ export class ProjeDuzenleComponent implements OnInit {
     this.selectProje.aciklama = (<HTMLInputElement>(
       document.getElementById('txtAciklama')
     )).value;
-    this.projeService.UpdateProje(this.selectProje);
+    this.projeService.Update(this.selectProje,this.selectProje.id,'proje');
     this.displayModal = false;
   }
 
@@ -69,7 +69,7 @@ export class ProjeDuzenleComponent implements OnInit {
       acceptLabel: 'Evet',
       rejectLabel: 'Hayır',
       accept: () => {
-        this.projeService.DeleteProje(proje.id);
+        this.projeService.Delete(proje.id,'proje');
       },
       reject: () => {
         //reject action

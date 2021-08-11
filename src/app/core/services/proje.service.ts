@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Proje } from '../models/proje';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ProjeService {
-
-  constructor(private fireStore: AngularFirestore) { }
-
-  ProjeList(){
-    return this.fireStore.collection('proje').snapshotChanges()
+export class ProjeService extends FirebaseService<Proje> {
+  constructor(
+    fireStore:AngularFirestore
+  ) {
+    super(fireStore);
   }
 
-  Test(){
-    return this.fireStore.collection<Proje>('proje').valueChanges()
-  }
+  // ProjeList() {
+  //   return this.fbService.List('proje');
+  // }
 
+  // // Test(){
+  // //   return this.fireStore.collection<Proje>('proje').valueChanges()
+  // // }
 
-  AddProje(proje:Proje){
-    return this.fireStore.collection('proje').add(Object.assign({},proje));
-  }
+  // AddProje(proje: Proje) {
+  //   return this.fbService.Add(proje, 'proje');
+  // }
 
-  DeleteProje(id: string) {
-    return this.fireStore.doc('proje/' + id).delete();
-  }
-  UpdateProje(proje: Proje) {
-    return this.fireStore
-      .doc('proje/' + proje.id)
-      .update(Object.assign({}, proje));
-  }
+  // DeleteProje(id: string) {
+  //   return this.fbService.Delete(id, 'proje');
+  // }
+  // UpdateProje(proje: Proje) {
+  //   return this.fbService.Update(proje, proje.id, 'proje');
+  // }
 }

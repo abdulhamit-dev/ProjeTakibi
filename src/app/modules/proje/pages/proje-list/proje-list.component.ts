@@ -22,7 +22,7 @@ export class ProjeListComponent implements OnInit {
   }
 
   ProjeList() {
-    this.projeService.ProjeList().subscribe((rv) => {
+    this.projeService.List('proje').subscribe((rv) => {
       this.projeList = rv.map((p) => {
         const data = p.payload.doc.data() as Proje;
         data.id = p.payload.doc.id;

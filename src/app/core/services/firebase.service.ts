@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { StreamPriorityOptions } from 'http2';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService {
+export abstract class FirebaseService<T> {
 
-  constructor(private fireAuth:AngularFireAuth) { }
+  constructor(private fireStore: AngularFirestore) { }
 
-  // SignIn(email:string,password:string){
-  //   return this.fireAuth.signInWithEmailAndPassword(email,password)
-  // }
-
-  // SingOut(){
-
-  // }
+  List(collectionName:string){
+    return this.fireStore.collection(collectionName).snapshotChanges()
+  }
+  Add(collection:T,collectionName:string){
+    return this.fireStore.collection(collectionName).add(Object.assign({},collection));
+  }
+  Delete(id: string,collectionName:string) {
+    return this.fireStore.doc(collectionName+'/' + id).delete();
+  }
+  Update(collection: T,id:string,collectionName:string) {
+    return this.fireStore
+      .doc(collectionName+ '/' +id)
+      .update(Object.assign({}, collection));
+  }
 }
