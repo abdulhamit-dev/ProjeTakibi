@@ -54,7 +54,7 @@ export class ProjeDuzenleComponent implements OnInit {
     this.selectProje.ad = (<HTMLInputElement>(
       document.getElementById('txtAd')
     )).value;
-    this.selectProje.ad = (<HTMLInputElement>(
+    this.selectProje.aciklama = (<HTMLInputElement>(
       document.getElementById('txtAciklama')
     )).value;
     this.projeService.UpdateProje(this.selectProje);

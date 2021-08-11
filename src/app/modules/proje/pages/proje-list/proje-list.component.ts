@@ -7,17 +7,18 @@ import { ProjeService } from 'src/app/core/services/proje.service';
 @Component({
   selector: 'app-proje-list',
   templateUrl: './proje-list.component.html',
-  styleUrls: ['./proje-list.component.css']
+  styleUrls: ['./proje-list.component.css'],
 })
 export class ProjeListComponent implements OnInit {
-
-  constructor(private projeService:ProjeService,private projeHareketService:ProjeHareketService) { }
-  projeList:Proje[]=[];
-  selectProje:Proje=new Proje();
-  projeHareketList:ProjeHareket[]=[];
+  constructor(
+    private projeService: ProjeService,
+    private projeHareketService: ProjeHareketService
+  ) {}
+  projeList: Proje[] = [];
+  selectProje: Proje = new Proje();
+  projeHareketList: ProjeHareket[] = [];
   ngOnInit(): void {
-    this.ProjeList()
-  
+    this.ProjeList();
   }
 
   ProjeList() {
@@ -26,13 +27,13 @@ export class ProjeListComponent implements OnInit {
         const data = p.payload.doc.data() as Proje;
         data.id = p.payload.doc.id;
         return data;
-      })
+      });
     });
   }
 
-  ProjeHareketList(proje:Proje){
-    this.projeHareketService.ProjeHareketList().subscribe(rv=>{
-      this.projeHareketList=rv.filter(x=>x.projeId==proje.id)
-    })
+  ProjeHareketList(proje: Proje) {
+    this.projeHareketService.ProjeHareketList().subscribe((rv) => {
+      this.projeHareketList = rv.filter((x) => x.projeId == proje.id);
+    });
   }
 }
