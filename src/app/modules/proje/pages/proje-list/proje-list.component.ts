@@ -32,7 +32,7 @@ export class ProjeListComponent implements OnInit {
   }
 
   ProjeHareketList(proje: Proje) {
-    this.projeHareketService.ProjeHareketList().subscribe((rv) => {
+    this.projeHareketService.Listv2('proje').subscribe((rv) => {
       this.projeHareketList = rv.filter((x) => x.projeId == proje.id);
     });
   }

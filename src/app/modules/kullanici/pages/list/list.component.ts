@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
   }
 
   KullaniciList() {
-    this.kullaniciService.KullaniciListesi().subscribe((rv) => {
+    this.kullaniciService.List('kullanici').subscribe((rv) => {
       this.kullaniciList = rv.map((k) => {
         const data = k.payload.doc.data() as Kullanici;
         data.id = k.payload.doc.id;
@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
     var kullanici=this.kullaniciList.find(x=>x.kullaniciAdi==this.kullanici.kullaniciAdi)
 
     if(kullanici===undefined){
-      this.kullaniciService.AddKullanici(this.kullanici);
+      this.kullaniciService.Add(this.kullanici,'kullanici');
     }else{
       alert("Aynı kullanıcı adı daha önce kaydedilmiş.")
     }
@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
     this.selectKullanici.ad=(<HTMLInputElement>document.getElementById("txtAd")).value;
     this.selectKullanici.soyad=(<HTMLInputElement>document.getElementById("txtSoyad")).value;
     this.selectKullanici.eposta=(<HTMLInputElement>document.getElementById("txtEposta")).value;
-    this.kullaniciService.UpdateKullanici(this.selectKullanici);
+    this.kullaniciService.Update(this.selectKullanici,this.selectKullanici.id,'kullanici');
     this.displayModal=false;
   }
 
@@ -67,7 +67,7 @@ export class ListComponent implements OnInit {
         acceptLabel:"Evet",
         rejectLabel:"Hayır",
         accept: () => {
-           this.kullaniciService.DeleteKullanici(kul.id)
+           this.kullaniciService.Delete(kul.id,'kullanici')
         },
         reject: () => {
             //reject action

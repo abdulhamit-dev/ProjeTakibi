@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Kullanici } from '../models/kullanici';
+import { FirebaseService } from './firebase.service';
 import { KullaniciService } from './kullanici.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService extends FirebaseService<Kullanici> {
 
-  constructor(private kullaniciService:KullaniciService) { }
+  constructor(fireStore: AngularFirestore) {super(fireStore)}
 
-  GirisKontrol(kullaniciAdi:string,parola:string){
-   return this.kullaniciService.KullaniciGetir(kullaniciAdi,parola)
-  }
+ 
 }

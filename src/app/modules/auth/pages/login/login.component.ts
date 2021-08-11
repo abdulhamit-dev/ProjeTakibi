@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         alert('Parola girmediniz');
       } else {
         this.authService
-          .GirisKontrol(this.kullanici.kullaniciAdi, this.kullanici.parola)
+          .Login(this.kullanici.kullaniciAdi)
           .subscribe((rv) => {
             if (rv.length > 0) {
               rv.forEach((data) => {
