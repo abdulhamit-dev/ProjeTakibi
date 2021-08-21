@@ -9,28 +9,32 @@
                 <p-table [value]="gorevList" [resizableColumns]="true" [autoLayout]="true"  >
                     <ng-template pTemplate="header">
                         <tr>
-                            <th hidden>ID</th>
+                            <th hidden >ID</th>
                             <th hidden>Proje Id</th>
-                            <th>  <p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                            <th></th>
                             <th>Görevler</th>
+                            <th>Oluşturulma Tarihi</th>
+                            <!-- <th>Durum</th> -->
 
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-gorev>
-                        <tr>
+                        <tr >
                             <td hidden>{{gorev.id}}</td>
                             <td hidden>{{gorev.projeId}}</td>
-                            <td><p-checkbox [(ngModel)]="gorev.id" (onChange)="GorevDurumuDegistir(gorev)" ></p-checkbox></td>
-                            <td> {{gorev.yapilacakIsAciklama}}</td>
+                            <td style="width: 20px;"><p-checkbox [(ngModel)]="gorev.yapilmaDurumu" [binary]="true" inputId="binary" (onChange)="GorevDurumuDegistir(gorev)" ></p-checkbox></td>
+                            <td [ngStyle]="{'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none'}"> {{gorev.yapilacakIsAciklama }}</td>
+                            <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
+                            <!-- <td>{{gorev.yapilmaDurumu}} </td> -->
                         </tr>
                     </ng-template>
-                    
+
                 </p-table>
             </div>
             <div class="col-12 md:col-10">
                 <input *ngIf="selectProje.id!=null" pInputText placeholder="Yeni görev yaz.. Enter ile kaydet" style="width: 100%;" (keyup.enter)="GorevEkle()" [(ngModel)]="gorev.yapilacakIsAciklama" >
             </div>
         </div>
-        
+
     </div>
 </div>

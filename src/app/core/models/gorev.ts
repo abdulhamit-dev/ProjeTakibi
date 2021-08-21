@@ -2,8 +2,8 @@ export class Gorev {
     id!:string;
     projeId!:string;
     yapilacakIsAciklama!:string;
-    yapilmaDurumu!:string;
+    yapilmaDurumu!:boolean;
     atananKullaniciId!:string;
     atayanKullaniciId!:string;
-    islemTarihi!:string
+    islemTarihi!:Date;
 }

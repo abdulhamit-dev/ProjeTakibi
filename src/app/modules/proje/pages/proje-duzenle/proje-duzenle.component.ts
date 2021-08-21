@@ -24,7 +24,7 @@ export class ProjeDuzenleComponent implements OnInit {
 
   ngOnInit(): void {
     this.ProjeList();
-    //  
+    //
   }
 
   ProjeList() {

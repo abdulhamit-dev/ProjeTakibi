@@ -39,25 +39,35 @@ export class ProjeListComponent implements OnInit {
   }
 
   ProjeGorevList(proje: Proje) {
-    this.gorevService.Listv2('gorev').subscribe((rv) => {
-      this.gorevList = rv.filter((x) => x.projeId == proje.id);
+    this.gorevService.List('gorev').subscribe((rv) => {
+      //this.gorevList = rv.filter((x) => x.projeId == proje.id);
+
+      this.gorevList=rv.map((p)=>{
+        const data=p.payload.doc.data() as Gorev;
+        data.id=p.payload.doc.id;
+        return data;
+      }).filter(x=>x.projeId==proje.id)
+      .sort((a,b)=>{
+        return +a.islemTarihi - +b.islemTarihi;
+      });
     });
+
   }
 
   GorevDurumuDegistir(gorev:Gorev){
-    console.log(gorev)
+    this.gorevService.Update(gorev,gorev.id,"gorev")
   }
 
   GorevEkle() {
     console.log(this.gorev.yapilacakIsAciklama);
-
     this.gorev.atananKullaniciId = localStorage.getItem('kullaniciId') as string;
     this.gorev.atayanKullaniciId = localStorage.getItem('kullaniciId') as string;
     this.gorev.projeId = this.selectProje.id;
-    this.gorev.islemTarihi = new Date().toLocaleString();
-    this.gorev.yapilmaDurumu = 'Beklemede';
-
+    this.gorev.islemTarihi = new Date();
+    this.gorev.yapilmaDurumu = false;
     this.gorevService.Add(this.gorev, 'gorev');
     this.gorev.yapilacakIsAciklama="";
   }
+
+
 }
