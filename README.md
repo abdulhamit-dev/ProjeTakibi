@@ -1,6 +1,11 @@
 # ProjeTakibi
 
-Firebase kullanıldı
+## Kullanılanlar
+>Firebase
+
+>PrimeNg
+
+## Yapılanlar
 
 >Projeler oluşturma
 
