@@ -26,6 +26,7 @@ export class ProjeListComponent implements OnInit {
   selectGorev!:Gorev[];
   ngOnInit(): void {
     this.ProjeList();
+
   }
 
   ProjeList() {
@@ -40,8 +41,6 @@ export class ProjeListComponent implements OnInit {
 
   ProjeGorevList(proje: Proje) {
     this.gorevService.List('gorev').subscribe((rv) => {
-      //this.gorevList = rv.filter((x) => x.projeId == proje.id);
-
       this.gorevList=rv.map((p)=>{
         const data=p.payload.doc.data() as Gorev;
         data.id=p.payload.doc.id;
@@ -50,12 +49,16 @@ export class ProjeListComponent implements OnInit {
       .sort((a,b)=>{
         return +a.islemTarihi - +b.islemTarihi;
       });
-    });
+    })
 
   }
 
   GorevDurumuDegistir(gorev:Gorev){
     this.gorevService.Update(gorev,gorev.id,"gorev")
+  }
+
+  GorevSil(gorev:Gorev){
+    this.gorevService.Delete(gorev.id,"gorev");
   }
 
   GorevEkle() {
@@ -69,5 +72,10 @@ export class ProjeListComponent implements OnInit {
     this.gorev.yapilacakIsAciklama="";
   }
 
-
+  GorevAciklamaDuzenle(gorev:Gorev,aciklama:string){
+    if(gorev.yapilacakIsAciklama!=aciklama){
+      gorev.yapilacakIsAciklama=aciklama;
+      this.gorevService.Update(gorev,gorev.id,"gorev")
+    }
+  }
 }

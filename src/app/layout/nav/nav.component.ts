@@ -27,27 +27,24 @@ export class NavComponent implements OnInit {
 
   MenuBarItems() {
     this.items = [
+
+      {
+        label: 'Proje',routerLink: 'proje/duzenle',icon:'pi pi-th-large'
+      },
+      { label: 'Görev', routerLink: 'proje/list',icon:'pi pi-sitemap' },
       {
         label: 'Kullanıcı Listesi',
         routerLink: 'kullanici/list',
         icon: 'pi pi-fw pi-user',
       },
-      {
-        label: 'Proje',
-        items: [
-          { label: 'Projeler', routerLink: 'proje/list' },
-          { label: 'Düzenle', routerLink: 'proje/duzenle' },
-        ],
-      },
-      { label: 'Test', routerLink: '/test' },
-      {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-          { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-          { label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
-        ],
-      },
+      // {
+      //   label: 'Edit',
+      //   icon: 'pi pi-fw pi-pencil',
+      //   items: [
+      //     { label: 'Delete', icon: 'pi pi-fw pi-trash' },
+      //     { label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
+      //   ],
+      // },
     ];
   }
 
