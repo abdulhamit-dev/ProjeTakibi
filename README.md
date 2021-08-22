@@ -2,9 +2,12 @@
 
 Firebase kullanıldı
 
->Projeler oluşturma,
->Her projeye görev ekleme,
->Eklenen görevleri kullanıcı bazlı atama,
+>Projeler oluşturma
+
+>Her projeye görev ekleme
+
+>Eklenen görevleri kullanıcı bazlı atama
+
 >Kullanıcı oluşturma
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
