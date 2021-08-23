@@ -23,15 +23,17 @@
                             <td hidden>{{gorev.projeId}}</td>
                             <td style="width: 20px;"><p-checkbox [(ngModel)]="gorev.yapilmaDurumu" [binary]="true" inputId="binary" (onChange)="GorevDurumuDegistir(gorev)" ></p-checkbox></td>
                             <td  >
+                              <!-- {{gorev.yapilacakIsAciklama}} -->
                               <input [ngStyle]="
                               {
                                 'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none',
                                 'background-color':gorev.yapilmaDurumu===true ? '#1e1e1e':'',
-                                'color':gorev.yapilmaDurumu===true ? 'green':''
+                                'color':gorev.yapilmaDurumu===true ? 'green':'',
+                                'width':gorev.yapilacakIsAciklama.length*10+'px'
                               }
                               "
 
-                              pInputText style="cursor: pointer;width: 100%;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
+                              pInputText style="cursor: pointer;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
                               </td>
                             <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
                             <td><p-button icon="pi pi-trash" (click)="GorevSil(gorev)" label=""  styleClass="p-button-danger p-button-sm"></p-button></td>
