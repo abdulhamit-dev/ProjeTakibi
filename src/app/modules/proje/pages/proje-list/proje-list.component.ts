@@ -2,9 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { Gorev } from 'src/app/core/models/gorev';
 import { Proje } from 'src/app/core/models/proje';
-import { ProjeHareket } from 'src/app/core/models/projeHareket';
 import { GorevService } from 'src/app/core/services/gorev.service';
-import { ProjeHareketService } from 'src/app/core/services/proje-hareket.service';
 import { ProjeService } from 'src/app/core/services/proje.service';
 
 @Component({
@@ -15,12 +13,10 @@ import { ProjeService } from 'src/app/core/services/proje.service';
 export class ProjeListComponent implements OnInit {
   constructor(
     private projeService: ProjeService,
-    private projeHareketService: ProjeHareketService,
     private gorevService: GorevService
   ) {}
   projeList: Proje[] = [];
   selectProje: Proje = new Proje();
-  projeHareketList: ProjeHareket[] = [];
   gorev: Gorev = new Gorev();
   gorevList: Gorev[] = [];
   selectGorev!: Gorev[];
@@ -35,6 +31,7 @@ export class ProjeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ProjeList();
+    this.selectDurum.deger=10;
   }
 
   ProjeList() {

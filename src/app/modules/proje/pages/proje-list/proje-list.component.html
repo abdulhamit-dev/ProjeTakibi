@@ -1,10 +1,15 @@
 
 <div class="grid">
     <div class="col-12 md:col-2">
-        <p-listbox [options]="projeList" [(ngModel)]="selectProje" optionLabel="ad" (click)="ProjeGorevList(selectProje)">
-        
+
+        <p-listbox  [options]="projeList" [(ngModel)]="selectProje" optionLabel="ad" (click)="ProjeGorevList(selectProje)">
+          <ng-template let-proje pTemplate="item">
+            <div class="proje-item" >
+                <div>{{proje.ad }}</div>
+            </div>
+        </ng-template>
         </p-listbox>
-        
+
     </div>
     <div class="col-12 md:col-10">
         <div class="grid">
@@ -24,6 +29,7 @@
                             <th></th>
                             <th>Görevler</th>
                             <th>Oluşturulma Tarihi</th>
+                            <th>Atanan Kullanıcı</th>
                             <th></th>
                         </tr>
                     </ng-template>
@@ -37,7 +43,7 @@
                               <input [ngStyle]="
                               {
                                 'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none',
-                                
+
                                 'color':gorev.yapilmaDurumu===true ? 'green':'',
                                 'width':gorev.yapilacakIsAciklama.length*10+30+'px'
                               }
@@ -46,6 +52,7 @@
                               pInputText style="cursor: pointer;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
                               </td>
                             <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
+                            <td>{{gorev.atananKullaniciId}} </td>
                             <td><p-button icon="pi pi-trash" (click)="GorevSil(gorev)" label=""  styleClass="p-button-danger p-button-sm"></p-button></td>
                         </tr>
                     </ng-template>
