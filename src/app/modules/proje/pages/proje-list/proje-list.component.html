@@ -1,12 +1,22 @@
 
 <div class="grid">
     <div class="col-12 md:col-2">
-        <p-listbox [options]="projeList" [(ngModel)]="selectProje" optionLabel="ad" (click)="ProjeGorevList(selectProje)"></p-listbox>
+        <p-listbox [options]="projeList" [(ngModel)]="selectProje" optionLabel="ad" (click)="ProjeGorevList(selectProje)">
+        
+        </p-listbox>
+        
     </div>
     <div class="col-12 md:col-10">
         <div class="grid">
             <div class="col-12 md:col-12">
-                 <p-table [value]="gorevList" [resizableColumns]="true" [autoLayout]="true"  >
+                <p-dropdown [options]="durumList" [(ngModel)]="selectDurum" placeholder="Görev Durumu Seçiniz" optionLabel="ad" [showClear]="true" (onChange)="BeklemedeOlanlar()"></p-dropdown>
+            </div>
+            <div class="col-12 md:col-12">
+                <input *ngIf="selectProje.id!=null" pInputText placeholder="Yeni görev yaz.. Enter ile kaydet"
+                style="width: 100%;" (keyup.enter)="GorevEkle()" [(ngModel)]="gorev.yapilacakIsAciklama" >
+            </div>
+            <div class="col-12 md:col-12">
+                 <p-table #dt1 [value]="gorevList" [resizableColumns]="true" [autoLayout]="true" styleClass="p-datatable-sm" [paginator]="true" [rows]="10" [globalFilterFields]="['yapilacakIsAciklama']" >
                     <ng-template pTemplate="header">
                         <tr>
                             <th hidden >ID</th>
@@ -27,9 +37,9 @@
                               <input [ngStyle]="
                               {
                                 'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none',
-                                'background-color':gorev.yapilmaDurumu===true ? '#1e1e1e':'',
+                                
                                 'color':gorev.yapilmaDurumu===true ? 'green':'',
-                                'width':gorev.yapilacakIsAciklama.length*10+'px'
+                                'width':gorev.yapilacakIsAciklama.length*10+30+'px'
                               }
                               "
 
@@ -42,10 +52,7 @@
 
                 </p-table>
             </div>
-            <div class="col-12 md:col-12">
-                <input *ngIf="selectProje.id!=null" pInputText placeholder="Yeni görev yaz.. Enter ile kaydet"
-                style="width: 100%;" (keyup.enter)="GorevEkle()" [(ngModel)]="gorev.yapilacakIsAciklama" >
-            </div>
+
         </div>
 
     </div>
