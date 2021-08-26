@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
+import { GorevDto } from 'src/app/core/models/dtos/gorevDto';
 import { Gorev } from 'src/app/core/models/gorev';
+import { Kullanici } from 'src/app/core/models/kullanici';
 import { Proje } from 'src/app/core/models/proje';
 import { GorevService } from 'src/app/core/services/gorev.service';
+import { KullaniciService } from 'src/app/core/services/kullanici.service';
 import { ProjeService } from 'src/app/core/services/proje.service';
+
 
 @Component({
   selector: 'app-proje-list',
@@ -13,14 +17,16 @@ import { ProjeService } from 'src/app/core/services/proje.service';
 export class ProjeListComponent implements OnInit {
   constructor(
     private projeService: ProjeService,
-    private gorevService: GorevService
+    private gorevService: GorevService,
+    private kullaniciService:KullaniciService
   ) {}
   projeList: Proje[] = [];
   selectProje: Proje = new Proje();
   gorev: Gorev = new Gorev();
-  gorevList: Gorev[] = [];
+  gorevList: GorevDto[] = [];
   selectGorev!: Gorev[];
   beklemede: boolean = false;
+  kullaniciList:Kullanici[]=[];
 
   durumList: Durum[] = [
     { ad: 'Tümü', deger: 10 },
@@ -31,6 +37,15 @@ export class ProjeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ProjeList();
+    
+    this.kullaniciService.List('kullanici').subscribe(rv=>{
+      this.kullaniciList=rv.map(p=>{
+        const data=p.payload.doc.data() as Kullanici;
+        data.id = p.payload.doc.id;
+        return data;
+      });
+    })
+
     this.selectDurum.deger=10;
   }
 
@@ -54,8 +69,9 @@ export class ProjeListComponent implements OnInit {
       if (this.selectDurum.deger != 10) {
         this.gorevList = rv
           .map((p) => {
-            const data = p.payload.doc.data() as Gorev;
-            data.id = p.payload.doc.id;
+            var data = p.payload.doc.data() as GorevDto;
+            data.id=p.payload.doc.id;
+            data.atananKullaniciAdi=this.kullaniciList.find(x=>x.id==data.atananKullaniciId)?.kullaniciAdi
             return data;
           })
           .filter((x) => x.projeId == proje.id)
@@ -66,8 +82,10 @@ export class ProjeListComponent implements OnInit {
       } else {
         this.gorevList = rv
           .map((p) => {
-            const data = p.payload.doc.data() as Gorev;
-            data.id = p.payload.doc.id;
+            
+            var data = p.payload.doc.data() as GorevDto;
+            data.id=p.payload.doc.id;
+            data.atananKullaniciAdi=this.kullaniciList.find(x=>x.id==data.atananKullaniciId)?.kullaniciAdi
             return data;
           })
           .filter((x) => x.projeId == proje.id)

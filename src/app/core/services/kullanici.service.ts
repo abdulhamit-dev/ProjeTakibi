@@ -8,5 +8,8 @@ import { FirebaseService } from './firebase.service';
   providedIn: 'root',
 })
 export class KullaniciService extends FirebaseService<Kullanici> {
-  constructor(fireStore: AngularFirestore) {super(fireStore)}
+  constructor(fireStore: AngularFirestore,private fireStoreService: AngularFirestore) {super(fireStore)}
+  KullaniciGetir(kullaniciId:string){
+    return this.fireStoreService.collection("kullanici",(ref)=>ref.where('id','==',kullaniciId)).valueChanges()
+  }
 }
