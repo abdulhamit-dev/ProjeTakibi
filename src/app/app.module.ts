@@ -8,7 +8,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrimengModule } from './modules/primeng/primeng.module';
 import { NavComponent } from './layout/nav/nav.component';
@@ -19,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjeModule } from './modules/proje/proje.module';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent, NavComponent, ContentComponent],
+  declarations: [AppComponent, NavComponent, ContentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

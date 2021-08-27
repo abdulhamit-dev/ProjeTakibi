@@ -7,8 +7,6 @@ import { ListComponent } from './modules/kullanici/pages/list/list.component';
 import { ProjeDuzenleComponent } from './modules/proje/pages/proje-duzenle/proje-duzenle.component';
 import { ProjeListComponent } from './modules/proje/pages/proje-list/proje-list.component';
 
-import { TestComponent } from './test/test.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -39,12 +37,7 @@ const routes: Routes = [
             canActivate: [AuthGuardService],
           },
         ],
-      },
-      {
-        path: 'test',
-        component: TestComponent,
-        canActivate: [AuthGuardService],
-      },
+      }
     ],
   },
   {

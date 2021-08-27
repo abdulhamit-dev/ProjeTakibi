@@ -29,7 +29,7 @@
                             <th></th>
                             <th>Görevler</th>
                             <th>Oluşturulma Tarihi</th>
-                            <th>Atanan Kullanıcı</th>
+                            <th>Atayan Kullanıcı</th>
                             <th></th>
                         </tr>
                     </ng-template>
@@ -52,7 +52,9 @@
                               pInputText style="cursor: pointer;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
                               </td>
                             <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
-                            <td>{{gorev.atananKullaniciAdi}} </td>
+                            <td>
+                              {{gorev.atananKullaniciAdi}}
+                            </td>
                             <td><p-button icon="pi pi-trash" (click)="GorevSil(gorev)" label=""  styleClass="p-button-danger p-button-sm"></p-button></td>
                         </tr>
                     </ng-template>
