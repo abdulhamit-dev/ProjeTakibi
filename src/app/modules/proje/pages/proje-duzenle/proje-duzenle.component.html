@@ -1,12 +1,47 @@
-<div class="grid">
-    <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="proje.ad"  placeholder="Proje Adı" class="w-full">  </div>
-    <div class="col-12 md:col-6 lg:col-6"> <input type="text" pInputText [(ngModel)]="proje.aciklama" placeholder="Açıklama" class="w-full">  </div>
-    <div class="col-12 md:col-6 lg:col-3"> 
-        <button pButton class="p-button-success" icon="pi pi-check" label="Kaydet" (click)="AddProje()"></button>    
-        </div>
-</div>
 
-<p-table [value]="projeList" [resizableColumns]="true" [autoLayout]="true" >
+<div nz-row [nzGutter]="16">
+  <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="proje.ad"  placeholder="Proje Adı" > </div>
+  <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="proje.aciklama" placeholder="Açıklama" > </div>
+  <div nz-col nzXl="8"><button nz-button nzType="primary"  (click)="AddProje()">Kaydet</button> </div>
+</div>
+<br>
+<nz-table #basicTable [nzData]="projeList" nzSize="middle">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ad</th>
+      <th>Açıklama</th>
+      <th>Oluşturma Tarihi</th>
+      <th>Oluşturan Kullanıcı</th>
+      <th>Sil</th>
+      <th>Düzenle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let proje of basicTable.data">
+      <td>{{proje.id}}</td>
+      <td>{{proje.ad}}</td>
+      <td>{{proje.aciklama }}</td>
+      <td>{{proje.olusturmaTarihi}}</td>
+      <td>{{proje.olusturanKullaniciId}}</td>
+      <td>
+        <button nz-button nzDanger nz-popover [nzPopoverTitle]="titleTemplate" [nzPopoverContent]="contentTemplate" nzPopoverTrigger="click">
+          <i nz-icon nzType="delete" ></i> Sil
+        </button>
+        <ng-template #titleTemplate>
+          <i nz-icon nzType="info-circle"></i>
+          {{proje.ad}} ' projesi silinsin mi?
+        </ng-template>
+        <ng-template #contentTemplate>
+          <button nz-button  [nzSize]="'small'" nzDanger  (click)="DeleteProje($event,proje)"  (nzOnCancel)="Vazgec()" ><i nz-icon nzType="delete"></i>  Sil</button>
+        </ng-template>
+
+      </td>
+      <td><button nz-button [nzSize]="'small'" (click)="ShowModalDialog(proje)">Düzenle</button></td>
+    </tr>
+  </tbody>
+</nz-table>
+<!-- <p-table [value]="projeList" [resizableColumns]="true" [autoLayout]="true" >
     <ng-template pTemplate="header">
         <tr>
             <th>ID</th>
@@ -43,4 +78,4 @@
     </ng-template>
 </p-dialog>
 
-<p-confirmPopup></p-confirmPopup>
+<p-confirmPopup></p-confirmPopup> -->

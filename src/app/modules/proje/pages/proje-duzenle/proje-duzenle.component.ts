@@ -4,6 +4,7 @@ import { Kullanici } from 'src/app/core/models/kullanici';
 import { Proje } from 'src/app/core/models/proje';
 import { KullaniciService } from 'src/app/core/services/kullanici.service';
 import { ProjeService } from 'src/app/core/services/proje.service';
+import {NzMessageService} from 'ng-zorro-antd/message'
 
 @Component({
   selector: 'app-proje-duzenle',
@@ -62,23 +63,32 @@ export class ProjeDuzenleComponent implements OnInit {
   }
 
   DeleteProje(event: Event, proje: Proje) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: this.proje.ad + ' adlı kayıt silinsin mi?',
-      icon: 'pi pi-exclamation-triangle',
-      acceptLabel: 'Evet',
-      rejectLabel: 'Hayır',
-      accept: () => {
-        this.projeService.Delete(proje.id,'proje');
-      },
-      reject: () => {
-        //reject action
-      },
-    });
+    this.projeService.Delete(proje.id,'proje');
+
+    // this.confirmationService.confirm({
+    //   target: event.target as EventTarget,
+    //   message: this.proje.ad + ' adlı kayıt silinsin mi?',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   acceptLabel: 'Evet',
+    //   rejectLabel: 'Hayır',
+    //   accept: () => {
+
+    //   },
+    //   reject: () => {
+    //     //reject action
+    //   },
+    // });
+  }
+  Vazgec(): void {
+
   }
 
   ShowModalDialog(proje: Proje) {
     this.selectProje = proje;
     this.displayModal = true;
   }
+
+
+
+
 }

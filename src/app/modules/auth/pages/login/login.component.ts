@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
   kullanici: Kullanici = new Kullanici();
   rvKul: Kullanici = new Kullanici();
+
   ngOnInit(): void {
     localStorage.removeItem('kullanici');
     localStorage.removeItem('kullaniciId');
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
               rv.forEach((data) => {
                 this.rvKul=data.payload.doc.data() as Kullanici
                 this.rvKul.id=data.payload.doc.id
-                
+
                 if(this.rvKul.id.length>0){
                   localStorage.setItem('kullaniciId',this.rvKul.id)
                   localStorage.setItem('kullanici',JSON.stringify(data.payload.doc.data()));
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit {
           });
       }
     }
-   
+
   }
+
+
 }

@@ -16,6 +16,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ContentComponent } from './layout/content/content.component';
 import { FormsModule } from '@angular/forms';
 import { ProjeModule } from './modules/proje/proje.module';
+import { NgZorroModule } from './modules/ngzorro/ngzorro.module';
+
 
 @NgModule({
   declarations: [AppComponent, NavComponent, ContentComponent],
@@ -27,6 +29,7 @@ import { ProjeModule } from './modules/proje/proje.module';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     PrimengModule,
+    NgZorroModule,
     KullaniciModule,
     ProjeModule,
     AuthModule,

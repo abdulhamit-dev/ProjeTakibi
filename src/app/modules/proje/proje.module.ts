@@ -6,6 +6,7 @@ import { ProjeListComponent } from './pages/proje-list/proje-list.component';
 import { FormsModule } from '@angular/forms';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ProjeDuzenleComponent } from './pages/proje-duzenle/proje-duzenle.component';
+import { NgZorroModule } from '../ngzorro/ngzorro.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProjeDuzenleComponent } from './pages/proje-duzenle/proje-duzenle.compo
     CommonModule,
     ProjeRoutingModule,
     FormsModule,
-    PrimengModule
+    PrimengModule,
+    NgZorroModule
   ]
 })
 export class ProjeModule { }
