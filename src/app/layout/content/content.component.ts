@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -9,6 +9,7 @@ export class ContentComponent implements OnInit {
 
   constructor() { }
 
+  @Input() isCollapsed = false;
   ngOnInit(): void {
   }
 

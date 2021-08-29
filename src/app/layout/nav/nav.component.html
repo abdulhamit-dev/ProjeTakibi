@@ -1,15 +1,14 @@
-<ul nz-menu nzMode="horizontal">
-  <li nz-menu-item nzMatchRouter >
-    <i nz-icon nzType="project" nzTheme="outline"></i>
-    <a [routerLink]="['/', 'proje', 'duzenle']">Proje</a>
-  </li>
-  <li nz-menu-item nzMatchRouter >
-    <i nz-icon nzType="aim" nzTheme="outline"></i>
-    <a [routerLink]="['/', 'proje', 'list']">Görev</a>
-  </li>
-  <li nz-menu-item nzMatchRouter >
-    <i nz-icon nzType="user" nzTheme="outline"></i>
-    <a [routerLink]="['/', 'kullanici', 'list']">Kullanıcı</a>
-  </li>
-</ul>
+<li style="float: right;" nz-submenu nzTitle="{{kullanici.ad}}" nzIcon="user">
+  <ul>
+    <li nz-menu-group nzTitle="Item 1">
+      <ul>
+        <li nz-menu-item>Ayarlar</li>
+        <li nz-menu-item>
+          <a [routerLink]="['/', 'auth', 'login']">Çıkış</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
 

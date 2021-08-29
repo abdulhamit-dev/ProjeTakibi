@@ -13,6 +13,7 @@ export class NavComponent implements OnInit {
   splintItems!: MenuItem[];
   kullaniciAdi!: string;
   kullanici: Kullanici = new Kullanici();
+
   ngOnInit(): void {
     this.AktifKullanici();
     this.MenuBarItems();
@@ -26,6 +27,7 @@ export class NavComponent implements OnInit {
   }
 
   MenuBarItems() {
+
     this.items = [
 
       {

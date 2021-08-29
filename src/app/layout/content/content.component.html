@@ -1,10 +1,18 @@
-
-<app-nav></app-nav>
-<!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
- -->
-
- <div style="margin-top:10px;">
-  <nz-card>
-    <router-outlet></router-outlet>
-  </nz-card>
-</div>
+<nz-layout class="layout">
+  <nz-sider [(nzCollapsed)]="isCollapsed" nzBreakpoint="lg" [nzCollapsedWidth]="0" >
+    <app-sider></app-sider>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <ul nz-menu nzTheme="light" nzMode="horizontal" >
+        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed" ></i>
+        <app-nav></app-nav>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <app-root></app-root>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

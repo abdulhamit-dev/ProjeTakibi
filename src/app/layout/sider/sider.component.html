@@ -1,0 +1,19 @@
+
+  <div class="logo">
+    <span style="color: whitesmoke;font-size: large;">Proje Takibi</span>
+  </div>
+  <ul nz-menu nzTheme="dark" nzMode="inline">
+    <li nz-menu-item>
+      <i nz-icon nzType="user" style="margin-right: 5px;"></i>
+      <a [routerLink]="['/', 'proje', 'duzenle']"> Proje</a>
+    </li>
+    <li nz-menu-item>
+      <i nz-icon nzType="video-camera" style="margin-right: 5px;"> </i>
+      <a [routerLink]="['/', 'proje', 'list']"> Görev</a>
+    </li>
+    <li nz-menu-item>
+      <i nz-icon nzType="upload" style="margin-right: 5px;"></i>
+      <a [routerLink]="['/', 'kullanici', 'list']"> Kullanıcı</a>
+    </li>
+
+  </ul>

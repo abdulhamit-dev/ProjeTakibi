@@ -17,10 +17,11 @@ import { ContentComponent } from './layout/content/content.component';
 import { FormsModule } from '@angular/forms';
 import { ProjeModule } from './modules/proje/proje.module';
 import { NgZorroModule } from './modules/ngzorro/ngzorro.module';
+import { SiderComponent } from './layout/sider/sider.component';
 
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, ContentComponent],
+  declarations: [AppComponent, NavComponent, ContentComponent, SiderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
