@@ -20,7 +20,7 @@ export class ProjeDuzenleComponent implements OnInit {
   proje: Proje = new Proje();
   projeList: Proje[] = [];
   selectProje: Proje = new Proje();
-  displayModal!: boolean;
+  displayModal: boolean=false;
   kullaniciList:Kullanici[]=[];
 
   ngOnInit(): void {
@@ -52,32 +52,24 @@ export class ProjeDuzenleComponent implements OnInit {
   }
 
   UpdateProje() {
+
+    
+    console.log(this.selectProje)
     this.selectProje.ad = (<HTMLInputElement>(
       document.getElementById('txtAd')
     )).value;
     this.selectProje.aciklama = (<HTMLInputElement>(
       document.getElementById('txtAciklama')
     )).value;
+
+    
+
     this.projeService.Update(this.selectProje,this.selectProje.id,'proje');
     this.displayModal = false;
   }
 
   DeleteProje(event: Event, proje: Proje) {
     this.projeService.Delete(proje.id,'proje');
-
-    // this.confirmationService.confirm({
-    //   target: event.target as EventTarget,
-    //   message: this.proje.ad + ' adlı kayıt silinsin mi?',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   acceptLabel: 'Evet',
-    //   rejectLabel: 'Hayır',
-    //   accept: () => {
-
-    //   },
-    //   reject: () => {
-    //     //reject action
-    //   },
-    // });
   }
   Vazgec(): void {
 
@@ -86,6 +78,12 @@ export class ProjeDuzenleComponent implements OnInit {
   ShowModalDialog(proje: Proje) {
     this.selectProje = proje;
     this.displayModal = true;
+  }
+
+
+ 
+  ModalVazgec(): void {
+    this.displayModal = false;
   }
 
 

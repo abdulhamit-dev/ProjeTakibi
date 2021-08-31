@@ -33,14 +33,24 @@
           {{proje.ad}} ' projesi silinsin mi?
         </ng-template>
         <ng-template #contentTemplate>
-          <button nz-button  [nzSize]="'small'" nzDanger  (click)="DeleteProje($event,proje)"  (nzOnCancel)="Vazgec()" ><i nz-icon nzType="delete"></i>  Sil</button>
+          <button nz-button   nzDanger  (click)="DeleteProje($event,proje)"  (nzOnCancel)="Vazgec()" ><i nz-icon nzType="delete"></i>  Sil</button>
         </ng-template>
 
       </td>
-      <td><button nz-button [nzSize]="'small'" (click)="ShowModalDialog(proje)">Düzenle</button></td>
+      <td><button nz-button  (click)="ShowModalDialog(proje)"><i nz-icon nzType="edit"></i> Düzenle</button></td>
     </tr>
   </tbody>
 </nz-table>
+
+
+<nz-modal [(nzVisible)]="displayModal" nzTitle="The first Modal" (nzOnCancel)="ModalVazgec()" (nzOnOk)="UpdateProje()">
+  <ng-container *nzModalContent>
+    <div nz-row [nzGutter]="16">
+      <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="selectProje.ad" id="txtAd" placeholder="Proje Adı" > </div>
+      <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="selectProje.aciklama" id="txtAciklama" placeholder="Açıklama" > </div>
+    </div>
+  </ng-container>
+</nz-modal>
 <!-- <p-table [value]="projeList" [resizableColumns]="true" [autoLayout]="true" >
     <ng-template pTemplate="header">
         <tr>

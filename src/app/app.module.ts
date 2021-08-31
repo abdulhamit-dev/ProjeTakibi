@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 
+import { registerLocaleData } from '@angular/common';
+import tr from '@angular/common/locales/tr';
+registerLocaleData(tr)
+import { NZ_I18N, tr_TR } from 'ng-zorro-antd/i18n';
+
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -36,7 +42,7 @@ import { SiderComponent } from './layout/sider/sider.component';
     AuthModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide:NZ_I18N,useValue:tr_TR}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
