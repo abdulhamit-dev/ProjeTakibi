@@ -12,6 +12,7 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
@@ -39,7 +40,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => {
     NzTableModule,
     NzPopconfirmModule,
     NzPopoverModule,
-    NzModalModule
+    NzModalModule,
+    NzListModule
   ],providers: [
     {
       provide: NZ_ICONS,

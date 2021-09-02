@@ -1,4 +1,65 @@
 
+
+<div nz-row [nzGutter]="[10,10]">
+  <div nz-col nzMd="4">
+    <nz-list nzBordered nzSize="small" >
+      <nz-list-header>Projeler</nz-list-header>
+      <nz-list-item *ngFor="let proje of projeList" (click)="ProjeGorevList(proje)" style="cursor: pointer;" >{{proje.ad}} </nz-list-item>
+    </nz-list>
+  </div>
+  <div nz-col nzMd="20">
+<div nz-row [nzGutter]="[10,10]">
+  <div nz-col nzXl="24">
+    <p-dropdown [options]="durumList" [(ngModel)]="selectDurum" placeholder="Görev Durumu Seçiniz" optionLabel="ad" [showClear]="true" (onChange)="BeklemedeOlanlar()"></p-dropdown>
+  </div>
+  <div nz-col nzXl="24">
+    <input *ngIf="selectProje.id!=null" pInputText placeholder="Yeni görev yaz.. Enter ile kaydet"    style="width: 100%" (keyup.enter)="GorevEkle()" [(ngModel)]="gorev.yapilacakIsAciklama" >
+  </div>
+  <div nz-col nzXl="24">
+    <p-table #dt1 [value]="gorevList" [resizableColumns]="true" [autoLayout]="true" styleClass="p-datatable-sm" [paginator]="true" [rows]="10" [globalFilterFields]="['yapilacakIsAciklama']" >
+      <ng-template pTemplate="header">
+          <tr>
+              <th hidden >ID</th>
+              <th hidden>Proje Id</th>
+              <th></th>
+              <th>Görevler</th>
+              <th>Oluşturulma Tarihi</th>
+              <th>Atayan Kullanıcı</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-gorev>
+          <tr >
+              <td hidden>{{gorev.id}}</td>
+              <td hidden>{{gorev.projeId}}</td>
+              <td style="width: 20px;"><p-checkbox [(ngModel)]="gorev.yapilmaDurumu" [binary]="true" inputId="binary" (onChange)="GorevDurumuDegistir(gorev)" ></p-checkbox></td>
+              <td  >
+                <!-- {{gorev.yapilacakIsAciklama}} -->
+                <input [ngStyle]="
+                {
+                  'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none',
+
+                  'color':gorev.yapilmaDurumu===true ? 'green':'',
+                  'width':gorev.yapilacakIsAciklama.length*10+30+'px'
+                }
+                "
+
+                pInputText style="cursor: pointer;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
+                </td>
+              <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
+              <td>
+                {{gorev.atananKullaniciAdi}}
+              </td>
+              <td><p-button icon="pi pi-trash" (click)="GorevSil(gorev)" label=""  styleClass="p-button-danger p-button-sm"></p-button></td>
+          </tr>
+      </ng-template>
+
+  </p-table>
+  </div>
+</div>
+  </div>
+</div>
+
 <div class="grid">
     <div class="col-12 md:col-2">
 
@@ -14,52 +75,13 @@
     <div class="col-12 md:col-10">
         <div class="grid">
             <div class="col-12 md:col-12">
-                <p-dropdown [options]="durumList" [(ngModel)]="selectDurum" placeholder="Görev Durumu Seçiniz" optionLabel="ad" [showClear]="true" (onChange)="BeklemedeOlanlar()"></p-dropdown>
+
             </div>
             <div class="col-12 md:col-12">
-                <input *ngIf="selectProje.id!=null" pInputText placeholder="Yeni görev yaz.. Enter ile kaydet"
-                style="width: 100%;" (keyup.enter)="GorevEkle()" [(ngModel)]="gorev.yapilacakIsAciklama" >
+
             </div>
             <div class="col-12 md:col-12">
-                 <p-table #dt1 [value]="gorevList" [resizableColumns]="true" [autoLayout]="true" styleClass="p-datatable-sm" [paginator]="true" [rows]="10" [globalFilterFields]="['yapilacakIsAciklama']" >
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th hidden >ID</th>
-                            <th hidden>Proje Id</th>
-                            <th></th>
-                            <th>Görevler</th>
-                            <th>Oluşturulma Tarihi</th>
-                            <th>Atayan Kullanıcı</th>
-                            <th></th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-gorev>
-                        <tr >
-                            <td hidden>{{gorev.id}}</td>
-                            <td hidden>{{gorev.projeId}}</td>
-                            <td style="width: 20px;"><p-checkbox [(ngModel)]="gorev.yapilmaDurumu" [binary]="true" inputId="binary" (onChange)="GorevDurumuDegistir(gorev)" ></p-checkbox></td>
-                            <td  >
-                              <!-- {{gorev.yapilacakIsAciklama}} -->
-                              <input [ngStyle]="
-                              {
-                                'text-decoration':gorev.yapilmaDurumu===true ? 'line-through':'none',
 
-                                'color':gorev.yapilmaDurumu===true ? 'green':'',
-                                'width':gorev.yapilacakIsAciklama.length*10+30+'px'
-                              }
-                              "
-
-                              pInputText style="cursor: pointer;" #input value="{{gorev.yapilacakIsAciklama}}" (focusout)="GorevAciklamaDuzenle(gorev,input.value)">
-                              </td>
-                            <td>{{gorev.islemTarihi.toDate() | date:'dd.MM.yyyy HH:mm'}}</td>
-                            <td>
-                              {{gorev.atananKullaniciAdi}}
-                            </td>
-                            <td><p-button icon="pi pi-trash" (click)="GorevSil(gorev)" label=""  styleClass="p-button-danger p-button-sm"></p-button></td>
-                        </tr>
-                    </ng-template>
-
-                </p-table>
             </div>
 
         </div>

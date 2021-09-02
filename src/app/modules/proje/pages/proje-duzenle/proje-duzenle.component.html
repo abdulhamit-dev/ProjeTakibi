@@ -1,11 +1,11 @@
 
-<div nz-row [nzGutter]="16">
-  <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="proje.ad"  placeholder="Proje Adı" > </div>
-  <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="proje.aciklama" placeholder="Açıklama" > </div>
+<div nz-row [nzGutter]="[5, 5]" >
+  <div nz-col nzXl="8" nzXs="24"  class="gutter-row"><input type="text" nz-input [(ngModel)]="proje.ad"  placeholder="Proje Adı" > </div>
+  <div nz-col nzXl="8" nzXs="24"  class="gutter-row"><input type="text" nz-input [(ngModel)]="proje.aciklama" placeholder="Açıklama" > </div>
   <div nz-col nzXl="8"><button nz-button nzType="primary"  (click)="AddProje()">Kaydet</button> </div>
 </div>
 <br>
-<nz-table #basicTable [nzData]="projeList" nzSize="middle">
+<nz-table #basicTable [nzData]="projeList" nzSize="middle" [nzBordered]="true" [nzShowPagination]="false" [nzScroll]="{ x: '1200px', y: '540px' }">
   <thead>
     <tr>
       <th>ID</th>
@@ -43,49 +43,12 @@
 </nz-table>
 
 
-<nz-modal [(nzVisible)]="displayModal" nzTitle="The first Modal" (nzOnCancel)="ModalVazgec()" (nzOnOk)="UpdateProje()">
+<nz-modal [(nzVisible)]="displayModal" nzWidth="750px" nzTitle="The first Modal" (nzOnCancel)="ModalVazgec()" (nzOnOk)="UpdateProje()">
   <ng-container *nzModalContent>
     <div nz-row [nzGutter]="16">
-      <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="selectProje.ad" id="txtAd" placeholder="Proje Adı" > </div>
-      <div nz-col nzXl="8"><input type="text" nz-input [(ngModel)]="selectProje.aciklama" id="txtAciklama" placeholder="Açıklama" > </div>
+      <div nz-col nzXl="12" nzXs="24" nzSm="24"><input type="text"  nz-input [(ngModel)]="selectProje.ad" id="txtAd" placeholder="Proje Adı" > </div>
+      <div nz-col nzXl="12" nzXs="24" nzSm="24"><input type="text"  nz-input [(ngModel)]="selectProje.aciklama" id="txtAciklama" placeholder="Açıklama" > </div>
     </div>
   </ng-container>
 </nz-modal>
-<!-- <p-table [value]="projeList" [resizableColumns]="true" [autoLayout]="true" >
-    <ng-template pTemplate="header">
-        <tr>
-            <th>ID</th>
-            <th>Ad</th>
-            <th>Açıklama</th>
-            <th>Oluşturma Tarihi</th>
-            <th>Oluşturan Kullanıcı</th>
-            <th>Sil</th>
-            <th>Düzenle</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-proje>
-        <tr>
-            <td>{{proje.id}}</td>
-            <td>{{proje.ad}}</td>
-            <td>{{proje.aciklama }}</td>
-            <td>{{proje.olusturmaTarihi}}</td>
-            <td>{{proje.olusturanKullaniciId}}</td>
-            <td><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteProje($event,proje)"   label="Sil"></button></td>
-            <td><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(proje)"   label="Düzenle"></button></td>
-        </tr>
-    </ng-template>
-</p-table>
 
-<p-dialog header="Proje Düzenle" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
-[draggable]="false" [resizable]="false">
-<div class="grid">
-    <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectProje.ad}}" id="txtAd" placeholder="Proje Adı" class="w-full">  </div>
-    <div class="col-12 md:col-6 lg:col-9"> <input type="text" pInputText value="{{selectProje.aciklama}}" id="txtAciklama" placeholder="Açıklama" class="w-full">  </div>
-</div>
-    <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="UpdateProje()" label="Kaydet"  styleClass="p-button-success"></p-button>
-    <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat"  styleClass="p-button-danger"></p-button>
-    </ng-template>
-</p-dialog>
-
-<p-confirmPopup></p-confirmPopup> -->
