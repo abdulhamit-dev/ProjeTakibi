@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { KullaniciRoutingModule } from './kullanici-routing.module';
 import { ListComponent } from './pages/list/list.component';
-import { PrimengModule } from '../primeng/primeng.module';
 import { FormsModule } from '@angular/forms';
+import { NgZorroModule } from '../ngzorro/ngzorro.module';
 
 
 
@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     KullaniciRoutingModule,
-    PrimengModule,
-    FormsModule
+    FormsModule,
+    NgZorroModule
   ]
 })
 export class KullaniciModule { }

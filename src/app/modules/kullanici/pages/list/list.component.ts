@@ -58,20 +58,30 @@ export class ListComponent implements OnInit {
     this.displayModal=false;
   }
 
-  DeleteControl(event: Event,kul:Kullanici) {
-    this.confirmationService.confirm({
+  DeleteControl(kul:Kullanici) {
 
-        target: event.target as EventTarget,
-        message:kul.kullaniciAdi +' adlı kayıt silinsin mi?',
-        icon: 'pi pi-exclamation-triangle',
-        acceptLabel:"Evet",
-        rejectLabel:"Hayır",
-        accept: () => {
-           this.kullaniciService.Delete(kul.id,'kullanici')
-        },
-        reject: () => {
-            //reject action
-        }
-    });
+    this.kullaniciService.Delete(kul.id,'kullanici')
+    // this.confirmationService.confirm({
+
+    //     target: event.target as EventTarget,
+    //     message:kul.kullaniciAdi +' adlı kayıt silinsin mi?',
+    //     icon: 'pi pi-exclamation-triangle',
+    //     acceptLabel:"Evet",
+    //     rejectLabel:"Hayır",
+    //     accept: () => {
+
+    //     },
+    //     reject: () => {
+    //         //reject action
+    //     }
+    // });
 }
+
+
+
+
+ModalVazgec(): void {
+  this.displayModal = false;
+}
+
 }

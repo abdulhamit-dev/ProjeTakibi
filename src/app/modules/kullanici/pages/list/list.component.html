@@ -1,59 +1,103 @@
+<div nz-row [nzGutter]="[5,5]">
+  <div nz-col nzLg="4">
+    <input type="text" nz-input [(ngModel)]="kullanici.kullaniciAdi" placeholder="Kullanıcı Adı">
+  </div>
+  <div nz-col nzLg="4">
+    <input type="text" nz-input [(ngModel)]="kullanici.parola" placeholder="Parola">
+  </div>
+  <div nz-col nzLg="4">
+    <input type="text" nz-input [(ngModel)]="kullanici.eposta" placeholder="Eposta">
+  </div>
+  <div nz-col nzLg="4">
+    <input type="text" nz-input [(ngModel)]="kullanici.ad" placeholder="Ad">
+  </div>
+  <div nz-col nzLg="4">
+    <input type="text" nz-input [(ngModel)]="kullanici.soyad" placeholder="Soyad">
+  </div>
+  <div nz-col nzLg="4">
+    <button nz-button nzType="primary"  (click)="AddKullanici()">Kaydet</button>
+  </div>
+</div>
+<br>
+<div nz-row >
+  <div nz-col nzLg="24">
 
-    <div class="grid">
-        <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="kullanici.kullaniciAdi"  placeholder="Kullanıcı Adı" class="w-full">  </div>
-        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.parola" placeholder="Parola" class="w-full">  </div>
-        <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText [(ngModel)]="kullanici.eposta" placeholder="Eposta" class="w-full">  </div>
-        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.ad" placeholder="Ad" class="w-full">  </div>
-        <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText [(ngModel)]="kullanici.soyad" placeholder="Soyad" class="w-full">  </div>
+    <nz-table #basicTable [nzData]="kullaniciList" nzSize="middle" [nzBordered]="true" [nzShowPagination]="false" [nzScroll]="{ x: '1200px', y: '540px' }">
+      <thead>
+        <tr>
+          <th hidden>ID</th>
+          <th>Kullanıcı Adı</th>
+          <th>Parola</th>
+          <th>Ad</th>
+          <th>Soyad</th>
+          <th>Eposta</th>
+          <th>Sil</th>
+          <th>Düzenle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let kul of basicTable.data">
+          <td hidden>{{kul.id}}</td>
+          <td>{{kul.kullaniciAdi}}</td>
+          <td>{{kul.parola }}</td>
+          <td>{{kul.ad}}</td>
+          <td>{{kul.soyad}}</td>
+          <td>{{kul.eposta}}</td>
+          <td>
+            <button nz-button nzDanger (click)="DeleteControl(kul)"><i nz-icon nzType="delete"></i> Sil</button>
+          </td>
+          <td>
+            <button nz-button  (click)="ShowModalDialog(kul)" ><i nz-icon nzType="edit"></i>Düzenle</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="displayModal" nzWidth="750px" nzTitle="The first Modal" (nzOnCancel)="ModalVazgec()" (nzOnOk)="UpdateKullanici()">
+  <ng-container *nzModalContent>
+    <div nz-row [nzGutter]="[5,5]">
+      <div nz-col nzLg="4">
+        <input type="text" id="txtKullaniciAdi" nz-input [(ngModel)]="selectKullanici.kullaniciAdi" placeholder="Kullanıcı Adı">
+      </div>
+      <div nz-col nzLg="4">
+        <input type="text" id="txtParola" nz-input [(ngModel)]="selectKullanici.parola" placeholder="Parola">
+      </div>
+      <div nz-col nzLg="4">
+        <input type="text" id="txtEposta" nz-input [(ngModel)]="selectKullanici.eposta" placeholder="Eposta">
+      </div>
+      <div nz-col nzLg="4">
+        <input type="text" id="txtAd" nz-input [(ngModel)]="selectKullanici.ad" placeholder="Ad">
+      </div>
+      <div nz-col nzLg="4">
+        <input type="text" id="txtSoyad" nz-input [(ngModel)]="selectKullanici.soyad" placeholder="Soyad">
+      </div>
     </div>
-    <div class="grid">
-        <div class="col-12 md:col-6 lg:col-3">
-        <button pButton class="p-button-success" icon="pi pi-check" label="Kaydet" (click)="AddKullanici()"></button>
-        </div>
-    </div>
-    <!-- <p-table [value]="kullaniciList" [scrollable]="true" scrollHeight="70vh" [style]="{width:'100%'}" ></p-table> -->
-    <p-table [value]="kullaniciList" [resizableColumns]="true" [autoLayout]="true" >
-        <ng-template pTemplate="header">
-            <tr>
-                <th hidden>ID</th>
-                <th>Kullanıcı Adı</th>
-                <th>Parola</th>
-                <th>Ad</th>
-                <th>Soyad</th>
-                <th>Eposta</th>
-                <th>Sil</th>
-                <th>Düzenle</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-kul>
-            <tr>
-                <td hidden>{{kul.id}}</td>
-                <td>{{kul.kullaniciAdi}}</td>
-                <td>{{kul.parola }}</td>
-                <td>{{kul.ad}}</td>
-                <td>{{kul.soyad}}</td>
-                <td>{{kul.eposta}}</td>
-                <td><button pButton class="p-button-danger" icon="pi pi-trash" (click)="DeleteControl($event,kul)"   label="Sil"></button></td>
-                <td><button pButton class="p-button-warning" icon="pi pi-refresh" (click)="ShowModalDialog(kul)"   label="Düzenle"></button></td>
-            </tr>
-        </ng-template>
-    </p-table>
+  </ng-container>
+</nz-modal>
 
-    <p-dialog header="Kullanıcı Düzenle" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
-        [draggable]="false" [resizable]="false">
-        <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3"> <input type="text" [disabled]="true" pInputText value="{{selectKullanici.kullaniciAdi}}" id="txtKullaniciAdi" placeholder="Kullanıcı Adı" class="w-full">  </div>
-            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.parola}}" id="txtParola" placeholder="Parola" class="w-full">  </div>
-            <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.eposta}}" id="txtEposta" placeholder="Eposta" class="w-full">  </div>
-            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.ad}}" id="txtAd" placeholder="Ad" class="w-full">  </div>
-            <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.soyad}}" id="txtSoyad" placeholder="Soyad" class="w-full">  </div>
-        </div>
-            <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="UpdateKullanici()" label="Kaydet"  styleClass="p-button-success"></p-button>
-            <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat"  styleClass="p-button-danger"></p-button>
-            </ng-template>
-    </p-dialog>
 
-    <p-confirmPopup></p-confirmPopup>
+<!-- <p-dialog header="Kullanıcı Düzenle" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-3"> <input type="text" [disabled]="true" pInputText
+        value="{{selectKullanici.kullaniciAdi}}" id="txtKullaniciAdi" placeholder="Kullanıcı Adı" class="w-full"> </div>
+    <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.parola}}"
+        id="txtParola" placeholder="Parola" class="w-full"> </div>
+    <div class="col-12 md:col-6 lg:col-3"> <input type="text" pInputText value="{{selectKullanici.eposta}}"
+        id="txtEposta" placeholder="Eposta" class="w-full"> </div>
+    <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.ad}}" id="txtAd"
+        placeholder="Ad" class="w-full"> </div>
+    <div class="col-12 md:col-6 lg:col-2"> <input type="text" pInputText value="{{selectKullanici.soyad}}" id="txtSoyad"
+        placeholder="Soyad" class="w-full"> </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="UpdateKullanici()" label="Kaydet" styleClass="p-button-success"></p-button>
+    <p-button icon="pi pi-check" (click)="displayModal=false" label="Kapat" styleClass="p-button-danger"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmPopup></p-confirmPopup> -->
 
 <!-- <button (click)="DeleteControl($event,kul)" pButton icon="pi pi-check" label="Sil"></button> -->

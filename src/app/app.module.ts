@@ -15,7 +15,6 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrimengModule } from './modules/primeng/primeng.module';
 import { NavComponent } from './layout/nav/nav.component';
 import { KullaniciModule } from './modules/kullanici/kullanici.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -35,7 +34,6 @@ import { SiderComponent } from './layout/sider/sider.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    PrimengModule,
     NgZorroModule,
     KullaniciModule,
     ProjeModule,
