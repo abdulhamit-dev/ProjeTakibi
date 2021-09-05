@@ -5,5 +5,5 @@ export class Gorev {
     yapilmaDurumu!:boolean;
     atananKullaniciId!:string;
     atayanKullaniciId!:string;
-    islemTarihi!:Date;
+    islemTarihi!:string;
 }

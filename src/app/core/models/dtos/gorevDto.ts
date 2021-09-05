@@ -8,5 +8,5 @@ export class GorevDto {
     atananKullaniciAdi:String | undefined;
     atayanKullaniciId!:string;
     atayanKullaniciAdi!:string;
-    islemTarihi!:Date;
+    islemTarihi!:string;
 }

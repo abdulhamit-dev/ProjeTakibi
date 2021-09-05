@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { GorevDto } from 'src/app/core/models/dtos/gorevDto';
 import { Gorev } from 'src/app/core/models/gorev';
 import { Kullanici } from 'src/app/core/models/kullanici';
@@ -37,7 +38,7 @@ export class ProjeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ProjeList();
-    
+
     this.kullaniciService.List('kullanici').subscribe(rv=>{
       this.kullaniciList=rv.map(p=>{
         const data=p.payload.doc.data() as Kullanici;
@@ -62,6 +63,7 @@ export class ProjeListComponent implements OnInit {
   ProjeGorevList(proje: Proje) {
     this.gorevService.ProjeGorevListesi(proje).subscribe((rv) => {
       var durum = false;
+      this.selectProje=proje;
 
       if (this.selectDurum.deger == 0) durum = false;
       else if (this.selectDurum.deger == 1) durum = true;
@@ -71,6 +73,7 @@ export class ProjeListComponent implements OnInit {
           .map((p) => {
             var data = p.payload.doc.data() as GorevDto;
             data.id=p.payload.doc.id;
+
             data.atananKullaniciAdi=this.kullaniciList.find(x=>x.id==data.atananKullaniciId)?.kullaniciAdi
             return data;
           })
@@ -82,7 +85,7 @@ export class ProjeListComponent implements OnInit {
       } else {
         this.gorevList = rv
           .map((p) => {
-            
+
             var data = p.payload.doc.data() as GorevDto;
             data.id=p.payload.doc.id;
             data.atananKullaniciAdi=this.kullaniciList.find(x=>x.id==data.atananKullaniciId)?.kullaniciAdi
@@ -94,6 +97,7 @@ export class ProjeListComponent implements OnInit {
           });
       }
     });
+    console.log(this.gorevList)
   }
 
   GorevDurumuDegistir(gorev: Gorev) {
@@ -112,7 +116,7 @@ export class ProjeListComponent implements OnInit {
       'kullaniciId'
     ) as string;
     this.gorev.projeId = this.selectProje.id;
-    this.gorev.islemTarihi = new Date();
+    this.gorev.islemTarihi = new Date().toLocaleString();
     this.gorev.yapilmaDurumu = false;
 
     this.gorevService.Add(this.gorev, 'gorev');

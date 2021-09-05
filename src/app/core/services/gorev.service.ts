@@ -24,39 +24,4 @@ export class GorevService extends FirebaseService<Gorev> {
         .snapshotChanges();
   }
 
-  // ProjeKullaniciGorevListesi(){
-
-  //   return this.fireStoreService
-  //   .collection<GorevDto>("gorev")
-  //   .valueChanges()
-  //   .pipe(
-  //     switchMap(gorevs => {
-  //       const gorev = uniq(gorevs.map(grv => grv.atananKullaniciId));
-  //       console.log(gorev);
-  //       return combineLatest(
-  //         of(gorevs),
-  //         combineLatest(
-  //           gorev.map(kulId =>
-  //            // console.log(kulId)
-  //             this.fireStoreService
-  //               .collection<Kullanici>("kullanici", ref =>
-  //                 ref.where("id", "==", kulId)
-  //               )
-  //               .valueChanges()
-  //               .pipe(map(kullaniciList => kullaniciList[0]))
-  //           )
-  //         )
-  //       );
-  //     }),
-  //     map(([gorevList, kullaniciList]) => {
-  //       return gorevList.map(gorev => {
-  //         return {
-  //           ...gorev,
-  //           author: kullaniciList.find(a => a.id === gorev.atananKullaniciId)
-  //         };
-  //       });
-  //     })
-  //   );
-  // }
-  
 }

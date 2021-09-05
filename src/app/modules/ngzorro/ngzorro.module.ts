@@ -13,6 +13,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
@@ -41,7 +43,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => {
     NzPopconfirmModule,
     NzPopoverModule,
     NzModalModule,
-    NzListModule
+    NzListModule,
+    NzCheckboxModule,
+    NzSelectModule
   ],providers: [
     {
       provide: NZ_ICONS,
