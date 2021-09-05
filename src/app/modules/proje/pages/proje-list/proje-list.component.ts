@@ -95,10 +95,9 @@ export class ProjeListComponent implements OnInit {
           });
       }
     });
-    console.log(this.gorevList)
   }
 
-  GorevDurumuDegistir(gorev: Gorev) {
+  GorevDurumuDegistir(gorev: GorevDto) {
     this.gorevService.Update(gorev, gorev.id, 'gorev');
   }
 

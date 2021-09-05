@@ -39,7 +39,7 @@
         <td hidden>{{gorev.id}}</td>
         <td hidden>{{gorev.projeId}}</td>
         <td style="width: 20px;">
-          <label nz-checkbox [(ngModel)]="gorev.yapilmaDurumu" (onChange)="GorevDurumuDegistir(gorev)"></label>
+          <label nz-checkbox [(ngModel)]="gorev.yapilmaDurumu"  (ngModelChange)="GorevDurumuDegistir(gorev)"></label>
         </td>
         <td  >
           <input nz-input [ngStyle]="
