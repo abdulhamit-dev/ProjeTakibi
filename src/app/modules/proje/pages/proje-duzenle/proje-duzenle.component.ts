@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
 import { Kullanici } from 'src/app/core/models/kullanici';
 import { Proje } from 'src/app/core/models/proje';
 import { KullaniciService } from 'src/app/core/services/kullanici.service';
 import { ProjeService } from 'src/app/core/services/proje.service';
-import {NzMessageService} from 'ng-zorro-antd/message'
 
 @Component({
   selector: 'app-proje-duzenle',
@@ -13,9 +11,7 @@ import {NzMessageService} from 'ng-zorro-antd/message'
 })
 export class ProjeDuzenleComponent implements OnInit {
   constructor(
-    private projeService: ProjeService,
-    private kullaniciService:KullaniciService,
-    private confirmationService: ConfirmationService
+    private projeService: ProjeService
   ) {}
   proje: Proje = new Proje();
   projeList: Proje[] = [];
@@ -53,7 +49,7 @@ export class ProjeDuzenleComponent implements OnInit {
 
   UpdateProje() {
 
-    
+
     console.log(this.selectProje)
     this.selectProje.ad = (<HTMLInputElement>(
       document.getElementById('txtAd')
@@ -62,7 +58,7 @@ export class ProjeDuzenleComponent implements OnInit {
       document.getElementById('txtAciklama')
     )).value;
 
-    
+
 
     this.projeService.Update(this.selectProje,this.selectProje.id,'proje');
     this.displayModal = false;
@@ -81,7 +77,7 @@ export class ProjeDuzenleComponent implements OnInit {
   }
 
 
- 
+
   ModalVazgec(): void {
     this.displayModal = false;
   }

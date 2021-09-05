@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Table } from 'primeng/table';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { GorevDto } from 'src/app/core/models/dtos/gorevDto';
 import { Gorev } from 'src/app/core/models/gorev';
 import { Kullanici } from 'src/app/core/models/kullanici';
